@@ -1,0 +1,104 @@
+//react router
+import { Link, useNavigate } from "react-router";
+
+//component
+import { DropdownNavbar } from "./dropdowns/navbar/DropdownNavbar";
+import { HamburgerNavbar } from "./hamburger/HamburgerNavbar";
+
+//icons
+import listPartsIcon from "../../assets/icons/navbar-icons/list-parts-icon.svg";
+import comboIcon from "../../assets/icons/navbar-icons/combo-icon.svg";
+import videogameIcon from "../../assets/icons/navbar-icons/videogame-icon.svg";
+import devicesIcon from "../../assets/icons/navbar-icons/devices-icon.svg";
+import windowsIcon from "../../assets/icons/navbar-icons/window-icon.svg";
+import chairIcon from "../../assets/icons/navbar-icons/chair-icon.svg";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+//lists
+import { optionsParts } from "../../ElementsLists/navbar/NavbarListParts";
+import { optionsDevices } from "../../ElementsLists/navbar/NavbarListDevices";
+
+export const Navbar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <nav className="w-full bg-[#200d30]">
+      <div className="py-5 px-5">
+        <div className="flex items-center justify-between capitalize font-bold text-white">
+          {/* logo page */}
+          <div>
+            <h2>LOGO</h2>
+          </div>
+
+          {/* principal options */}
+          <div className="hidden xl:block">
+            <ul className="flex gap-5">
+              {/* select for diferents parts of pc */}
+              <li className="flex gap-2">
+                <DropdownNavbar
+                  textButton="List Parts"
+                  icon={listPartsIcon}
+                  list={optionsParts}
+                />
+              </li>
+
+              {/* select for diferents parts of devices */}
+              <li className="flex gap-2">
+                <DropdownNavbar
+                  textButton="Devices"
+                  icon={devicesIcon}
+                  list={optionsDevices}
+                />
+              </li>
+
+              {/* other options */}
+              <li className="flex items-center gap-2 hover:text-[#df19df] ease-in transition">
+                <img
+                  className="w-7 h-7 object-contain"
+                  src={comboIcon}
+                  alt=""
+                />
+                <Link to="/">pc combos</Link>
+              </li>
+              <li className="flex items-center gap-2 hover:text-[#df19df] ease-in transition">
+                <img
+                  className="w-7 h-7 object-contain"
+                  src={windowsIcon}
+                  alt=""
+                />
+                <Link to="/">windows</Link>
+              </li>
+              <li className="flex items-center gap-2 hover:text-[#df19df] ease-in transition">
+                <img
+                  className="w-7 h-7 object-contain"
+                  src={videogameIcon}
+                  alt=""
+                />
+                <Link to="/">consoles</Link>
+              </li>
+              <li className="flex items-center gap-2 hover:text-[#df19df] ease-in transition">
+                <img
+                  className="w-7 h-7 object-contain"
+                  src={chairIcon}
+                  alt=""
+                />
+                <Link to="/">chairs</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="flex items-center gap-6">
+            <button
+              onClick={() => navigate("/login")}
+              className="hidden xl:block capitalize cursor-pointer bg-[#3bff29] hover:bg-[#17a2ff] ease-in transition px-5 py-2 rounded-sm"
+            >
+              login / register
+            </button>
+            {/* it's only do it, when user has a movile device or has a window minus then 1204px */}
+            <HamburgerNavbar />
+            <AiOutlineShoppingCart className="cursor-pointer" size={30} />
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
