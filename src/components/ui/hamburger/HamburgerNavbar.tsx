@@ -12,11 +12,14 @@ import { IoIosClose } from "react-icons/io";
 
 //lists
 import { DropdownNavbar } from "../dropdowns/navbar/DropdownNavbar";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { optionsParts } from "../../../ElementsLists/navbar/NavbarListParts";
 import { optionsDevices } from "../../../ElementsLists/navbar/NavbarListDevices";
 
 export const HamburgerNavbar = () => {
+
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   //hook to remove the scrollbar in axe y, when user open the sidebar
@@ -45,7 +48,7 @@ export const HamburgerNavbar = () => {
             <ul className="p-5">
               {/* select for diferents parts of pc */}
               <li className="flex items-center justify-between">
-                <button className="capitalize cursor-pointer bg-[#3bff29] hover:bg-[#17a2ff] ease-in transition px-5 py-2 rounded-sm">
+                <button className="capitalize cursor-pointer bg-[#3bff29] hover:bg-[#17a2ff] ease-in transition px-5 py-2 rounded-sm" onClick={() => navigate("/login")}>
                   login / register
                 </button>
                 <button onClick={handleClickIsOpen}>

@@ -4,20 +4,28 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 import setUpGamer from "../../assets/images/authentication/setup-gamer.webp";
+import { useChange } from "../../hooks/useChange";
+import type { UserLoginInterface } from "../../types/usersTypes";
 
 export const LoginPage = () => {
+  
+  const { data, handleChangeInputs } = useChange<UserLoginInterface>({
+    email: "",
+    password: "",
+  });
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex items-center justify-center">
-        <div className="flex bg-white w-250 p-2 shadow-2xl my-5">
-          <div className="w-[50%]">
+        <div className="flex mx-0 md:mx-5 flex-col xl:flex-row bg-white xl:w-250 p-2 shadow-2xl my-5">
+          <div className="xl:w-[50%]">
             <img
               className="w-full h-full object-cover rounded-lg"
               src={setUpGamer}
               alt=""
             />
           </div>
-          <div className="w-[50%] py-10 px-20">
+          <div className="xl:w-[50%] md:py-10 md:px-20 mt-4">
             <h1 className="capitalize text-[#200d30] text-4xl">
               get started now
             </h1>
@@ -32,8 +40,8 @@ export const LoginPage = () => {
                 className="py-1 px-3 border border-[#df19df] focus:border-[#200d30] outline-none rounded-lg"
                 placeholder="Enter your email..."
                 type="text"
-                name=""
-                id=""
+                name="email"
+                onChange={handleChangeInputs}
               />
             </div>
             <div className="flex flex-col mt-4">
@@ -44,8 +52,8 @@ export const LoginPage = () => {
                 className="py-1 px-3 border border-[#df19df] focus:border-[#200d30] outline-none rounded-lg"
                 placeholder="Enter your password..."
                 type="password"
-                name=""
-                id=""
+                name="password"
+                onChange={handleChangeInputs}
               />
             </div>
             <Link
@@ -67,8 +75,13 @@ export const LoginPage = () => {
               log in
             </button>
             <div className="text-center block mt-4">
-              <span className="text-gray-500 mr-2">Don't you have account?</span>
-              <Link className="capitalize font-medium text-[#df19df]" to="/register">
+              <span className="text-gray-500 mr-2">
+                Don't you have account?
+              </span>
+              <Link
+                className="capitalize font-medium text-[#df19df]"
+                to="/register"
+              >
                 resgister now!
               </Link>
             </div>
